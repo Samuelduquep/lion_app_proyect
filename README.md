@@ -8,7 +8,7 @@ Este es un proyecto creado con Vite, React y TypeScript. La aplicación incluye 
 
 Puedes ver una demo en vivo de la aplicación en el siguiente enlace:
 
-[Demo de la Aplicación](https://vercel.com/samuelduqueps-projects/lion-app-proyect)
+[Demo de la Aplicación](https://lion-app-proyect.vercel.app/)
 
 Funcionalidades
 
