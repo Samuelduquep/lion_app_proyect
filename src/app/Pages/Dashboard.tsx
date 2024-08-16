@@ -82,7 +82,7 @@ const Dashboard: React.FC = () => {
                                     fill="#8884d8"
                                     dataKey="value"
                                 >
-                                    {dataPieChart.map((entry, index) => (
+                                    {dataPieChart.map((_, index) => (
                                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                     ))}
                                 </Pie>

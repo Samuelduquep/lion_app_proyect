@@ -1,8 +1,6 @@
 import type { FormProps } from 'antd';
-import { Button, Form, Input, Alert } from 'antd';
+import { Button, Form, Input } from 'antd';
 import { Link, useNavigate } from 'react-router-dom'; import { ChevronLeftIcon } from '@heroicons/react/20/solid';
-import axios from 'axios';
-import { useState } from 'react';
 
 type FieldType = {
   username?: string;
@@ -15,26 +13,11 @@ type FieldType = {
 
 
 export const Register: React.FC = () => {
-  const [error, setError] = useState({ error: false, msg: '' });
   const navigate = useNavigate()
 
 
-  const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
-    console.log(values);
-
-    return
-    axios
-      .post('http://localhost:8000/register', values)
-      .then((res) => {
-
-        // localStorage.setItem('token', res.data.token);
-        // navigate('/home');
-      })
-      .catch((err) => {
-        console.log('Error:', err);
-        setError({ error: true, msg: err.response?.data.detail });
-        console.log(err.response?.data.detail);
-      });
+  const onFinish: FormProps<FieldType>['onFinish'] = () => {
+    navigate('/home');
   };
 
   const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
@@ -111,9 +94,6 @@ export const Register: React.FC = () => {
           >
             <Input.Password />
           </Form.Item>
-
-          {error.error ? <Alert className='mb-4' message={error.msg} type="error" /> : null}
-
 
           <Form.Item>
             <Button type="primary" htmlType="submit">

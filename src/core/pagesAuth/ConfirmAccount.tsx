@@ -5,17 +5,11 @@ import Alert from "antd/es/alert/Alert";
 import { useEffect, useState } from "react";
 
 export const ConfirmAccount = () => {
-  // const params = useParams();
-  // const { id } = params;
   const [msgServer, setMsgServer] = useState(false);
 
   useEffect(() => {
     const confirmAccount = async () => {
       try {
-        // const url = `${import.meta.env.VITE_API_URL}/users/confirm/${id}`;
-        // const resp = await fetch(url);
-        // const result = await resp.json();
-        // result && setMsgServer(result.msg)
         setMsgServer(true)
       } catch (error) {
         console.log(error)
