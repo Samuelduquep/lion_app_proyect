@@ -43,7 +43,7 @@ const Dashboard: React.FC = () => {
     const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
     return (
-        <div className="mx-auto h-full p-3 bg-gradient-to-br from-blue-500 to-blue-700 dark:from-blue-800 dark:to-blue-900 rounded-md shadow-xl text-gray-900 dark:text-gray-200">
+        <div className="mx-auto md:h-100 p-3 bg-gradient-to-br from-blue-500 to-blue-700 dark:from-blue-800 dark:to-blue-900 rounded-md shadow-xl text-gray-900 dark:text-gray-200">
             <Row gutter={[16, 16]}>
                 <Col xs={24} sm={12} md={6}>
                     <Card title="Total Users" bordered={false} className="flex flex-col justify-center items-center bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-200">
