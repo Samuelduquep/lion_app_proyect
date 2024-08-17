@@ -95,11 +95,11 @@ const TodoList: React.FC = () => {
     const { darkMode } = useTheme();
 
     return (
-        <div className="flex justify-between h-full item-center flex-col h-100 p-2 bg-gradient-to-br from-blue-300 to-blue-500 dark:from-blue-700 dark:to-blue-900 rounded-md shadow-xl text-white dark:text-gray-200">
+        <div className="flex flex-col h-full overflow-auto p-2 bg-gradient-to-br from-blue-300 to-blue-500 dark:from-gray-600 dark:to-blue-900 rounded-md shadow-xl text-white dark:text-gray-200">
             {/* Parte Superior */}
-            <div className="flex-1 flex flex-col lg:flex-row gap-2 h-1/2">
+            <div className="flex-1 flex flex-col lg:flex-row gap-2">
                 {/* Todo List */}
-                <div className="w-1/2 h-full lg:w-1/2 bg-white text-gray-900 p-3 rounded-lg shadow-md border border-gray-200 dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 lg:mb-0">
+                <div className="w-full lg:w-1/2 bg-white text-gray-900 p-3 rounded-lg shadow-md border border-gray-200 dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600">
                     <div className="mb-4">
                         <Input
                             type="text"
@@ -121,7 +121,7 @@ const TodoList: React.FC = () => {
                     </div>
                     <List
                         bordered
-                        className='overflow-auto h-full max-h-72 pb-20 dark:bg-gray-800 dark:border-gray-600'
+                        className='overflow-auto max-h-72 dark:bg-gray-800 dark:border-gray-600'
                         dataSource={getStatusList('todo')}
                         renderItem={todo => (
                             <List.Item
@@ -142,11 +142,10 @@ const TodoList: React.FC = () => {
                             </List.Item>
                         )}
                     />
-
                 </div>
 
                 {/* Chart */}
-                <div className="flex w-full h-full lg:w-2/3 bg-white p-3 rounded-lg shadow-md border border-gray-200 dark:bg-gray-800 dark:border-gray-600">
+                <div className="flex-1 bg-white p-3 rounded-lg shadow-md border border-gray-200 dark:bg-gray-800 dark:border-gray-600">
                     <Bar
                         data={chartData}
                         options={{
@@ -194,7 +193,7 @@ const TodoList: React.FC = () => {
             </div>
 
             {/* Parte Inferior: Kanban */}
-            <div className="flex-1 lg:mt-2 flex h-1/2 gap-2">
+            <div className="flex-1 lg:mt-2 flex flex-col lg:flex-row gap-2 mt-4">
                 <DragDropContext onDragEnd={handleDragEnd}>
                     {['todo', 'doing', 'done'].map(status => (
                         <Droppable key={status} droppableId={status}>
@@ -202,18 +201,17 @@ const TodoList: React.FC = () => {
                                 <div
                                     ref={provided.innerRef}
                                     {...provided.droppableProps}
-                                    className="p-5 pb-10 w-1/3  bg-white rounded-lg shadow-md border border-gray-200 dark:bg-gray-800 dark:border-gray-600"
+                                    className="p-5 pb-10 bg-white rounded-lg shadow-md border border-gray-200 dark:bg-gray-800 dark:border-gray-600 flex-1"
                                 >
-                                    <div className="flex items-center justify-between">
+                                    <div className="flex items-center justify-between mb-2">
                                         <h3 className="text-lg font-semibold capitalize text-gray-700 dark:text-gray-300">
                                             {status === 'todo' ? 'To Do' : status === 'doing' ? 'Doing' : 'Done'}
                                         </h3>
-
                                     </div>
                                     <List
                                         bordered
                                         size='small'
-                                        className='overflow-auto h-full p-2 dark:bg-gray-800 dark:border-gray-600'
+                                        className='overflow-auto max-h-72 p-2 dark:bg-gray-800 dark:border-gray-600'
                                         dataSource={getStatusList(status as Todo['status'])}
                                         renderItem={(todo) => (
                                             <Draggable key={todo.id} draggableId={todo.id.toString()} index={todos.indexOf(todo)}>
@@ -248,6 +246,7 @@ const TodoList: React.FC = () => {
                 </DragDropContext>
             </div>
         </div>
+
     );
 };
 

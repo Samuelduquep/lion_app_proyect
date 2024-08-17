@@ -1,14 +1,25 @@
-import { Button, Modal } from 'antd';
-import { LogoutOutlined } from '@ant-design/icons';
+import { Button, Modal, Drawer, Menu } from 'antd';
+import { useState } from 'react';
+import { LogoutOutlined, MenuOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import ThemeToggleButton from './ThemeToggleButton';
 import useGlobalStore from '../../global/hooks/useGlobal';
-
+import useMenuItems from '../../global/hooks/useMenuItems';
 
 const Header = () => {
     const navigate = useNavigate();
-    const { title } = useGlobalStore();
+    const { title, setTitle } = useGlobalStore();
+    const [visible, setVisible] = useState(false);
+    const items = useMenuItems();
 
+
+    const showDrawer = () => {
+        setVisible(true);
+    };
+
+    const onClose = () => {
+        setVisible(false);
+    };
     const handleLogoutClick = () => {
         Modal.confirm({
             title: 'Are you sure you want to logout?',
@@ -23,6 +34,12 @@ const Header = () => {
 
     return (
         <div className="flex items-center justify-between">
+            <Button
+                type="primary"
+                icon={<MenuOutlined />}
+                onClick={showDrawer}
+                className="md:hidden"
+            />
             <div className="text-xl font-semibold text-gray-900 dark:text-gray-200">
                 {title}
             </div>
@@ -35,8 +52,27 @@ const Header = () => {
                     <LogoutOutlined />
                 </Button>
             </div>
+
+            {/* Drawer for Mobile Menu */}
+            <Drawer
+                title="Menu"
+                placement="left"
+                onClose={onClose}
+                open={visible}
+            >
+                <Menu
+                    mode="inline"
+                    items={items}
+                    onClick={({ key }) => {
+                        setTitle(key);
+                        navigate(key);
+                        setVisible(false);
+                    }}
+                />
+            </Drawer>
         </div>
     );
 };
 
 export default Header;
+

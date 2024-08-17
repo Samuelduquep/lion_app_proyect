@@ -86,8 +86,8 @@ const Movies: React.FC<MoviesProps> = ({ type, title, genre }) => {
         <div className="mx-auto h-full p-5 bg-gradient-to-br from-blue-500 to-blue-900 rounded-md shadow-xl text-white flex flex-col">
             <div className="mb-5 flex justify-between items-center">
                 <h1 className="text-xl w-1/3 font-bold text-white mr-5">
-                    <span className="relative inline-block">
-                        <span className="relative z-10">{title}</span>
+                    <span className="relative inline-block text-center">
+                        <span className="relative z-10 text-center text-sm lg:text-xl">{title}</span>
                     </span>
                 </h1>
                 <input
@@ -97,14 +97,14 @@ const Movies: React.FC<MoviesProps> = ({ type, title, genre }) => {
                     onChange={handleSearchChange}
                     className="p-3 border w-1/3 border-gray-700 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
-                <div className="ml-6 flex items-center w-1/3 justify-end">
+                <div className="ml-6 flex items-center w-1/ justify-end">
                     {[1, 2, 3, 4, 5].map(star => (
                         <button
                             key={star}
                             onClick={() => handleRatingClick(star)}
-                            className={`p-1 ${rating >= star ? 'text-yellow-400' : 'text-gray-400'}`}
+                            className={`p-0 lg:p-1 ${rating >= star ? 'text-yellow-400' : 'text-gray-400'}`}
                         >
-                            <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 lg:w-8 lg:h-8 " viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M12 17.27L18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27z" />
                             </svg>
                         </button>

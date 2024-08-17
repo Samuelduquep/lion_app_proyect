@@ -1,19 +1,14 @@
-import { UnorderedListOutlined, AppstoreOutlined, DesktopOutlined, RocketOutlined, CameraFilled, StarFilled, ClockCircleOutlined } from '@ant-design/icons';
-import { Menu, MenuProps } from 'antd';
+import { Menu } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import useGenreStore from '../../global/hooks/useGenre';
 import { useTheme } from '../../global/hooks/useTheme';
 import useGlobalStore from '../../global/hooks/useGlobal';
-useGenreStore
-
-
-type MenuItem = Required<MenuProps>['items'][number];
+import useMenuItems from '../../global/hooks/useMenuItems';
 
 
 const MainMenu: React.FC = () => {
-    const { genres, isLoading, error } = useGenreStore();
     const navigate = useNavigate();
     const { setTitle } = useGlobalStore();
+    const items = useMenuItems();
 
     const handleMenuClick = ({ key }: { key: string }) => {
         if (key) {
@@ -21,35 +16,6 @@ const MainMenu: React.FC = () => {
             navigate(key);
         }
     };
-
-    const items: MenuItem[] = [
-        { key: 'Dashboard', icon: <AppstoreOutlined />, label: 'Dashboard' },
-        { key: 'Weather', icon: <DesktopOutlined />, label: 'Weather' },
-        { key: 'TodoList', icon: <UnorderedListOutlined />, label: 'Todo List' },
-        { key: 'Nasa', icon: <RocketOutlined />, label: 'Nasa' },
-        {
-            key: 'sub2',
-            label: 'Movies',
-            icon: <CameraFilled />,
-            children: [
-                { key: 'movies/PopularMovies', icon: <StarFilled />, label: 'Popular Movies' },
-                { key: 'movies/UpcomingMovies', icon: <ClockCircleOutlined />, label: 'Upcoming Movies' },
-                {
-                    key: 'sub3',
-                    label: 'Movie Genres',
-                    children: isLoading
-                        ? [{ key: 'loading', label: 'Loading...' }]
-                        : error
-                            ? [{ key: 'error', label: 'Error loading genres' }]
-                            : genres.map(genre => ({
-                                key: `movies/${genre.id}`,
-                                label: genre.name,
-                            })),
-                },
-            ],
-        },
-    ];
-
 
 
     const { darkMode } = useTheme();
