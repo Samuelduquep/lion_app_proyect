@@ -57,7 +57,7 @@ const MainMenu: React.FC = () => {
 
     return (
         <div className="h-full w-full flex flex-col dark:bg-slate-900 ">
-            <div className=" bg-blue-600 text-white dark:text-slate-200 p-4 rounded-lg shadow-lg w-full text-center">
+            <div className=" bg-blue-600 text-white dark:text-slate-200 p-4 rounded- rounded-tl-lg rounded-tr-lg w-full text-center">
                 Lion App
             </div>
             <Menu
