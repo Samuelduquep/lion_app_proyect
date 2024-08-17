@@ -47,29 +47,29 @@ const Dashboard: React.FC = () => {
             <Row gutter={[16, 16]}>
 
                 {/* Estadísticas Rápidas */}
-                <Col xs={12} sm={12} md={6}>
+                <Col xs={12}>
                     <Card title="Total Users" bordered={false} className="flex flex-col justify-center items-center bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-200">
                         <Progress type="circle" percent={75} strokeColor="#4CAF50" />
                     </Card>
                 </Col>
-                <Col xs={12} sm={12} md={6}>
+                <Col xs={12}>
                     <Card title="Active Users" bordered={false} className="flex flex-col justify-center items-center bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-200">
                         <Progress type="circle" percent={50} strokeColor="#FFC107" />
                     </Card>
                 </Col>
-                <Col xs={12} sm={12} md={6}>
+                <Col xs={12}>
                     <Card title="New Signups" bordered={false} className="flex flex-col justify-center items-center bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-200">
                         <Progress type="circle" percent={25} strokeColor="#03A9F4" />
                     </Card>
                 </Col>
-                <Col xs={12} sm={12} md={6}>
+                <Col xs={12}>
                     <Card title="Churn Rate" bordered={false} className="flex flex-col justify-center items-center bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-200">
                         <Progress type="circle" percent={10} strokeColor="#F44336" />
                     </Card>
                 </Col>
 
                 {/* Gráfico de Donuts */}
-                <Col xs={24} md={12}>
+                <Col xs={24}>
                     <Card title="User Distribution" bordered={false} className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-200">
                         <ResponsiveContainer width="100%" height={320}>
                             <PieChart>
@@ -93,7 +93,7 @@ const Dashboard: React.FC = () => {
                 </Col>
 
                 {/* Calendario */}
-                <Col xs={24} md={12}>
+                <Col xs={24}>
                     <Card title="Calendar" bordered={false} className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-200 h-full">
                         <Calendar fullscreen={false} />
                     </Card>
