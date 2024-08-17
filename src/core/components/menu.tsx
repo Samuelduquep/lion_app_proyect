@@ -22,20 +22,22 @@ const MainMenu: React.FC = () => {
 
 
     return (
-        <div className="h-full w-full flex flex-col dark:bg-slate-900 ">
-            <div className=" bg-blue-600 text-white dark:text-slate-200 p-4 rounded- rounded-tl-lg rounded-tr-lg w-full text-center">
+        <div className="h-full w-full flex flex-col dark:bg-slate-900 relative">
+            <div className="bg-blue-600 text-white dark:text-slate-200 p-4 rounded-tl-lg rounded-tr-lg w-full text-center">
                 Lion App
             </div>
-            <Menu
-                className="flex-grow rounded-b-lg overflow-auto"
-                defaultSelectedKeys={['1']}
-                defaultOpenKeys={['sub2']}
-                mode="inline"
-                theme={darkMode ? "dark" : "light"}
-                items={items}
-                onClick={handleMenuClick}
-                style={{ height: '80vh' }}
-            />
+            <div className="flex-grow rounded-b-lg overflow-auto" style={{ height: '80vh' }}>
+                <Menu
+                    className="w-full"
+                    defaultSelectedKeys={['1']}
+                    defaultOpenKeys={['sub2']}
+                    mode="inline"
+                    theme={darkMode ? "dark" : "light"}
+                    items={items}
+                    onClick={handleMenuClick}
+                    style={{ height: '100%' }}
+                />
+            </div>
         </div>
     );
 };

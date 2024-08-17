@@ -15,7 +15,7 @@ const PrivateArea = () => {
           <Header />
         </header>
 
-        <main className="flex-1 overflow-auto md:h-full">
+        <main className="flex-1 overflow-auto h-full md:h-full">
           <Outlet />
         </main>
       </div>
