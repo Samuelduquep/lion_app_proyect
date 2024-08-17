@@ -43,32 +43,29 @@ const Dashboard: React.FC = () => {
     const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
     return (
-        <div className="overflow-auto mx-auto h-full p-3 bg-gradient-to-br from-blue-500 to-blue-700 dark:from-blue-800 dark:to-blue-900 rounded-md shadow-xl text-gray-900 dark:text-gray-200">
+        <div className="mx-auto h-full p-3 bg-gradient-to-br from-blue-500 to-blue-700 dark:from-blue-800 dark:to-blue-900 rounded-md shadow-xl text-gray-900 dark:text-gray-200">
             <Row gutter={[16, 16]}>
-
-                {/* Estadísticas Rápidas */}
-                <Col xs={12}>
+                <Col xs={24} sm={12} md={6}>
                     <Card title="Total Users" bordered={false} className="flex flex-col justify-center items-center bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-200">
                         <Progress type="circle" percent={75} strokeColor="#4CAF50" />
                     </Card>
                 </Col>
-                <Col xs={12}>
+                <Col xs={24} sm={12} md={6}>
                     <Card title="Active Users" bordered={false} className="flex flex-col justify-center items-center bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-200">
                         <Progress type="circle" percent={50} strokeColor="#FFC107" />
                     </Card>
                 </Col>
-                <Col xs={12}>
+                <Col xs={24} sm={12} md={6}>
                     <Card title="New Signups" bordered={false} className="flex flex-col justify-center items-center bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-200">
                         <Progress type="circle" percent={25} strokeColor="#03A9F4" />
                     </Card>
                 </Col>
-                <Col xs={12}>
+                <Col xs={24} sm={12} md={6}>
                     <Card title="Churn Rate" bordered={false} className="flex flex-col justify-center items-center bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-200">
                         <Progress type="circle" percent={10} strokeColor="#F44336" />
                     </Card>
                 </Col>
 
-                {/* Gráfico de Donuts */}
                 <Col xs={24}>
                     <Card title="User Distribution" bordered={false} className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-200">
                         <ResponsiveContainer width="100%" height={320}>
@@ -92,14 +89,12 @@ const Dashboard: React.FC = () => {
                     </Card>
                 </Col>
 
-                {/* Calendario */}
                 <Col xs={24}>
                     <Card title="Calendar" bordered={false} className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-200 h-full">
                         <Calendar fullscreen={false} />
                     </Card>
                 </Col>
 
-                {/* Tabla de Usuarios */}
                 <Col xs={24}>
                     <Card title="User Data" bordered={false} className="w-full overflow-auto bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-200">
                         {loading ? (
@@ -110,7 +105,7 @@ const Dashboard: React.FC = () => {
                                 columns={columns}
                                 rowKey="id"
                                 size="middle"
-                                scroll={{ x: 'calc(700px + 50%)', y: 240 }}
+                                scroll={{ x: '100%', y: 240 }}
                                 pagination={{ pageSize: 5 }}
                                 className="dark:bg-gray-800 dark:text-gray-200"
                             />
@@ -118,7 +113,6 @@ const Dashboard: React.FC = () => {
                     </Card>
                 </Col>
 
-                {/* Lista de Tareas */}
                 <Col xs={24}>
                     <Card title="To-Do List" bordered={false} className="bg-white text-gray-100 dark:bg-gray-800 dark:text-gray-200">
                         <List
@@ -131,6 +125,7 @@ const Dashboard: React.FC = () => {
                 </Col>
             </Row>
         </div>
+
 
     );
 };
