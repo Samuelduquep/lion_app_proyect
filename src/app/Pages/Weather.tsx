@@ -148,22 +148,22 @@ const Weather: React.FC = () => {
     const renderWeatherIcon = (code: number): JSX.Element => {
         switch (code) {
             case 0:
-                return <WiDaySunny className="text-yellow-400 text-5xl" />;
+                return <WiDaySunny className="text-yellow-400 text-5xl dark:text-yellow-300" />;
             case 1:
             case 2:
             case 3:
-                return <WiCloudy className="text-gray-300 text-5xl" />;
+                return <WiCloudy className="text-gray-600 text-5xl dark:text-gray-400" />;
             default:
-                return <WiCloudy className="text-gray-300 text-5xl" />;
+                return <WiCloudy className="text-gray-600 text-5xl dark:text-gray-400" />;
         }
     };
 
     if (loading) return <LoadingSpinner />;
 
     return (
-        <div className="overflow-auto mx-auto h-full p-8 bg-gradient-to-br from-blue-500 to-blue-900 rounded-md shadow-xl text-white">
+        <div className="overflow-auto mx-auto h-full p-8 bg-gradient-to-br from-blue-500 to-blue-700 dark:from-blue-800 dark:to-blue-900 rounded-md shadow-xl text-gray-900 dark:text-gray-200">
             <div className="flex flex-col items-center justify-between mb-8 space-y-4">
-                <h1 className="text-5xl font-thin">Weather</h1>
+                <h1 className="text-5xl font-thin text-gray-800 dark:text-gray-100">Weather</h1>
                 <div className="flex w-full md:w-1/2">
                     <AutoComplete
                         className="w-full"
@@ -175,7 +175,7 @@ const Weather: React.FC = () => {
                         placeholder="Enter city name"
                     >
                         <Input
-                            className="h-10 rounded-l-full text-gray-900 placeholder-gray-400"
+                            className="h-10 rounded-l-full text-gray-900 placeholder-gray-600 dark:text-gray-200 dark:placeholder-gray-400"
                             placeholder="Enter city name"
                         />
                     </AutoComplete>
@@ -191,56 +191,56 @@ const Weather: React.FC = () => {
                 </div>
             </div>
 
-            {error && <p className="text-red-400 mb-4 text-center">{error}</p>}
+            {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
 
             {weatherData && (
-                <div className="flex flex-col md:flex-row items-center bg-gray-800 rounded-3xl overflow-hidden shadow-2xl mb-8">
+                <div className="flex flex-col md:flex-row items-center bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-2xl mb-8">
                     <div className="w-full md:w-1/2 bg-cover bg-center">
                         <div className="p-6 flex justify-center items-center h-full">
                             {renderWeatherIcon(weatherData.weathercode)}
                         </div>
                     </div>
                     <div className="w-full md:w-1/2 p-8 space-y-6">
-                        <h2 className="text-5xl font-thin">{city || 'Your Location'}</h2>
+                        <h2 className="text-5xl font-thin text-gray-800 dark:text-gray-100">{city || 'Your Location'}</h2>
                         <div className="flex justify-between items-center">
                             <div className="flex items-center gap-2">
-                                <WiThermometer className="text-white text-5xl" />
+                                <WiThermometer className="text-gray-800 dark:text-gray-100 text-5xl" />
                                 <span className="text-7xl font-thin">{Math.round(weatherData.temperature)}°</span>
                             </div>
                             <div className="flex items-center gap-2">
-                                <WiWindy className="text-white text-5xl" />
+                                <WiWindy className="text-gray-800 dark:text-gray-100 text-5xl" />
                                 <span className="text-2xl font-thin">{weatherData.windspeed} m/s</span>
                             </div>
                         </div>
-                        <p className="text-right text-gray-400">Updated just now</p>
+                        <p className="text-right text-gray-600 dark:text-gray-400">Updated just now</p>
                     </div>
                 </div>
             )}
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-gray-800 rounded-3xl p-6 shadow-2xl">
-                    <h2 className="text-3xl font-thin mb-4">World Weather</h2>
+                <div className="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-2xl">
+                    <h2 className="text-3xl font-thin mb-4 text-gray-800 dark:text-gray-100">World Weather</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {worldWeather.map((cityWeather, index) => (
-                            <div key={index} className="flex items-center bg-gray-900 p-4 rounded-xl shadow-lg">
+                            <div key={index} className="flex items-center bg-gray-100 dark:bg-gray-700 p-4 rounded-xl shadow-lg">
                                 {renderWeatherIcon(cityWeather.weathercode)}
                                 <div className="ml-4">
-                                    <h3 className="text-xl font-semibold">{cityWeather.name}</h3>
-                                    <p className="text-lg">{cityWeather.temperature}°C</p>
+                                    <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">{cityWeather.name}</h3>
+                                    <p className="text-lg text-gray-600 dark:text-gray-300">{cityWeather.temperature}°C</p>
                                 </div>
                             </div>
                         ))}
                     </div>
                 </div>
 
-                <div className="bg-gray-800 rounded-3xl p-6 shadow-2xl">
-                    <h2 className="text-3xl font-thin mb-4">World Time</h2>
+                <div className="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-2xl">
+                    <h2 className="text-3xl font-thin mb-4 text-gray-800 dark:text-gray-100">World Time</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {worldTime.map((cityTime, index) => (
-                            <div key={index} className="flex items-center bg-gray-900 p-4 rounded-xl shadow-lg">
+                            <div key={index} className="flex items-center bg-gray-100 dark:bg-gray-700 p-4 rounded-xl shadow-lg">
                                 <div className="ml-4">
-                                    <h3 className="text-xl font-semibold">{cityTime.name}</h3>
-                                    <p className="text-lg">{cityTime.time}</p>
+                                    <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">{cityTime.name}</h3>
+                                    <p className="text-lg text-gray-600 dark:text-gray-300">{cityTime.time}</p>
                                 </div>
                             </div>
                         ))}

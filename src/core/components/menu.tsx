@@ -1,18 +1,22 @@
-import React from 'react';
-import { UnorderedListOutlined, LogoutOutlined, AppstoreOutlined, DesktopOutlined, RocketOutlined, CameraFilled, StarFilled, ClockCircleOutlined } from '@ant-design/icons';
-import type { MenuProps } from 'antd';
-import { Menu } from 'antd';
+import { UnorderedListOutlined, AppstoreOutlined, DesktopOutlined, RocketOutlined, CameraFilled, StarFilled, ClockCircleOutlined } from '@ant-design/icons';
+import { Menu, MenuProps } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { useGenres } from '../../global/hooks/useGenre';
-import { Modal } from 'antd';
+import { useTheme } from '../../global/hooks/useTheme';
+import useGlobalStore from '../../global/hooks/useGlobal';
+
+
 type MenuItem = Required<MenuProps>['items'][number];
+
 
 const MainMenu: React.FC = () => {
     const { genres, isLoading, error } = useGenres();
     const navigate = useNavigate();
+    const { setTitle } = useGlobalStore();
 
     const handleMenuClick = ({ key }: { key: string }) => {
         if (key) {
+            setTitle(key);
             navigate(key);
         }
     };
@@ -45,41 +49,27 @@ const MainMenu: React.FC = () => {
         },
     ];
 
-    const handleLogoutClick = () => {
-        Modal.confirm({
-            title: 'Are you sure you want to logout?',
-            content: 'You will be redirected to the home page.',
-            okText: 'Yes',
-            cancelText: 'No',
-            onOk: () => {
-                navigate('/');
-            }
-        });
-    };
+
+
+    const { darkMode } = useTheme();
+
+
     return (
-        <div className="h-full w-full flex flex-col">
+        <div className="h-full w-full flex flex-col dark:bg-slate-900 ">
+            <div className=" bg-blue-600 text-white dark:text-slate-200 p-4 rounded-lg shadow-lg w-full text-center">
+                Lion App
+            </div>
             <Menu
                 className="flex-grow rounded-b-lg overflow-auto"
                 defaultSelectedKeys={['1']}
                 defaultOpenKeys={['sub2']}
                 mode="inline"
-                theme="light"
+                theme={darkMode ? "dark" : "light"}
                 items={items}
                 onClick={handleMenuClick}
                 style={{ height: '80vh' }}
             />
-            <div className="p-4">
-                <button
-                    className="w-full bg-red-500 text-white rounded-lg p-2 flex items-center justify-center"
-                    onClick={handleLogoutClick}
-                >
-                    <LogoutOutlined className="mr-2" />
-                    Logout
-                </button>
-            </div>
         </div>
-
-
     );
 };
 

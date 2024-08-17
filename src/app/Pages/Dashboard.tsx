@@ -1,4 +1,3 @@
-import React from 'react';
 import { Table, Card, Row, Col, Spin, message, Calendar, List, Progress } from 'antd';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 import useFetch from '../../global/hooks/useFetch';
@@ -44,33 +43,33 @@ const Dashboard: React.FC = () => {
     const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
     return (
-        <div className='overflow-auto mx-auto h-full p-8 bg-gradient-to-br from-blue-500 to-blue-900 rounded-md shadow-xl text-white flex flex-col'>
+        <div className='overflow-auto mx-auto h-full p-8 bg-gradient-to-br from-blue-500 to-blue-900 dark:from-blue-700 dark:to-blue-900 rounded-md shadow-xl text-white dark:text-gray-200 flex flex-col'>
             <Row gutter={[16, 16]}>
                 {/* Estadísticas Rápidas */}
                 <Col span={6}>
-                    <Card title="Total Users" bordered={false}>
-                        <Progress type="circle" percent={75} />
+                    <Card title="Total Users" bordered={false} className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-200">
+                        <Progress type="circle" percent={75} strokeColor="#4CAF50" />
                     </Card>
                 </Col>
                 <Col span={6}>
-                    <Card title="Active Users" bordered={false}>
-                        <Progress type="circle" percent={50} />
+                    <Card title="Active Users" bordered={false} className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-200">
+                        <Progress type="circle" percent={50} strokeColor="#FFC107" />
                     </Card>
                 </Col>
                 <Col span={6}>
-                    <Card title="New Signups" bordered={false}>
-                        <Progress type="circle" percent={25} />
+                    <Card title="New Signups" bordered={false} className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-200">
+                        <Progress type="circle" percent={25} strokeColor="#03A9F4" />
                     </Card>
                 </Col>
                 <Col span={6}>
-                    <Card title="Churn Rate" bordered={false}>
-                        <Progress type="circle" percent={10} />
+                    <Card title="Churn Rate" bordered={false} className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-200">
+                        <Progress type="circle" percent={10} strokeColor="#F44336" />
                     </Card>
                 </Col>
 
                 {/* Gráfico de Donuts */}
                 <Col span={12}>
-                    <Card title="User Distribution" bordered={false}>
+                    <Card title="User Distribution" bordered={false} className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-200">
                         <ResponsiveContainer width="100%" height={320}>
                             <PieChart>
                                 <Pie
@@ -94,14 +93,14 @@ const Dashboard: React.FC = () => {
 
                 {/* Calendario */}
                 <Col span={12}>
-                    <Card title="Calendar" bordered={false} className="h-full">
+                    <Card title="Calendar" bordered={false} className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-200 h-full">
                         <Calendar fullscreen={false} />
                     </Card>
                 </Col>
 
                 {/* Tabla de Usuarios */}
                 <Col span={24}>
-                    <Card title="User Data" bordered={false}>
+                    <Card title="User Data" bordered={false} className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-200">
                         {loading ? (
                             <Spin size="large" />
                         ) : (
@@ -110,6 +109,7 @@ const Dashboard: React.FC = () => {
                                 columns={columns}
                                 rowKey="id"
                                 pagination={{ pageSize: 5 }}
+                                className="dark:bg-gray-800 dark:text-gray-200"
                             />
                         )}
                     </Card>
@@ -117,12 +117,12 @@ const Dashboard: React.FC = () => {
 
                 {/* Lista de Tareas */}
                 <Col span={24}>
-                    <Card title="To-Do List" bordered={false}>
+                    <Card color='white' title="To-Do List" bordered={false} className="bg-white text-gray-100 dark:bg-gray-800 dark:text-gray-200">
                         <List
                             size="small"
                             bordered
                             dataSource={['Task 1', 'Task 2', 'Task 3']}
-                            renderItem={item => <List.Item>{item}</List.Item>}
+                            renderItem={item => <List.Item className="dark:bg-gray-700">{item}</List.Item>}
                         />
                     </Card>
                 </Col>

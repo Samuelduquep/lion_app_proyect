@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Movie, ApiResponse, MoviesProps } from '../../global/types';
+import useGlobalStore from '../../global/hooks/useGlobal';
 
 const Movies: React.FC<MoviesProps> = ({ type, title, genre }) => {
+    const { setTitle } = useGlobalStore();
     const [movies, setMovies] = useState<Movie[]>([]);
     const [filteredMovies, setFilteredMovies] = useState<Movie[]>([]);
     const [search, setSearch] = useState('');
@@ -11,6 +13,7 @@ const Movies: React.FC<MoviesProps> = ({ type, title, genre }) => {
     let API_URL = '';
     genre ? API_URL = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${type}` : API_URL = `https://api.themoviedb.org/3/movie/${type}?api_key=${API_KEY}`;
 
+    useEffect(() => { setTitle('Movies') }, [title, setTitle]);
     useEffect(() => {
         const fetchMovies = async () => {
             try {
@@ -80,9 +83,9 @@ const Movies: React.FC<MoviesProps> = ({ type, title, genre }) => {
     };
 
     return (
-        <div className="mx-auto h-full p-8 bg-gradient-to-br from-blue-500 to-blue-900 rounded-md shadow-xl text-white flex flex-col">
-            <div className="mb-6 flex items-center">
-                <h1 className="text-4xl font-bold text-white mb-6 mr-6">
+        <div className="mx-auto h-full p-5 bg-gradient-to-br from-blue-500 to-blue-900 rounded-md shadow-xl text-white flex flex-col">
+            <div className="mb-5 flex justify-between items-center">
+                <h1 className="text-xl w-1/3 font-bold text-white mr-5">
                     <span className="relative inline-block">
                         <span className="relative z-10">{title}</span>
                     </span>
@@ -92,9 +95,9 @@ const Movies: React.FC<MoviesProps> = ({ type, title, genre }) => {
                     placeholder="Search for movies..."
                     value={search}
                     onChange={handleSearchChange}
-                    className="w-full p-3 border border-gray-700 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="p-3 border w-1/3 border-gray-700 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
-                <div className="ml-6 flex items-center">
+                <div className="ml-6 flex items-center w-1/3 justify-end">
                     {[1, 2, 3, 4, 5].map(star => (
                         <button
                             key={star}
