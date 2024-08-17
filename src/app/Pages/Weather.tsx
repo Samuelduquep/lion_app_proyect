@@ -79,6 +79,7 @@ const Weather: React.FC = () => {
     };
 
     const fetchWorldWeather = async (): Promise<void> => {
+        setLoading(true);
         const cities = [
             { name: 'New York', lat: 40.7128, lon: -74.0060 },
             { name: 'London', lat: 51.5074, lon: -0.1278 },
@@ -104,6 +105,7 @@ const Weather: React.FC = () => {
     };
 
     const fetchWorldTime = (): void => {
+        setLoading(true);
         const cities = [
             { name: 'New York', timezone: 'America/New_York' },
             { name: 'London', timezone: 'Europe/London' },
@@ -161,9 +163,8 @@ const Weather: React.FC = () => {
     if (loading) return <LoadingSpinner />;
 
     return (
-        <div className="overflow-auto mx-auto h-full p-8 bg-gradient-to-br from-blue-500 to-blue-700 dark:from-blue-800 dark:to-blue-900 rounded-md shadow-xl text-gray-900 dark:text-gray-200">
-            <div className="flex flex-col items-center justify-between mb-8 space-y-4">
-                <h1 className="text-5xl font-thin text-gray-800 dark:text-gray-100">Weather</h1>
+        <div className="overflow-auto mx-auto h-full p-3 bg-gradient-to-br from-blue-500 to-blue-700 dark:from-blue-800 dark:to-blue-900 rounded-md shadow-xl text-gray-900 dark:text-gray-200">
+            <div className="flex flex-col items-center justify-between mb-2 space-y-4">
                 <div className="flex w-full md:w-1/2">
                     <AutoComplete
                         className="w-full"
@@ -191,12 +192,12 @@ const Weather: React.FC = () => {
                 </div>
             </div>
 
-            {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
+            {error && <p className="text-red-500 mb-4 text-center text-xl">{error}</p>}
 
             {weatherData && (
-                <div className="flex flex-col md:flex-row items-center bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-2xl mb-8">
+                <div className="flex flex-col md:flex-row items-center bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-2xl mb-3">
                     <div className="w-full md:w-1/2 bg-cover bg-center">
-                        <div className="p-6 flex justify-center items-center h-full">
+                        <div className="p-3 flex justify-center items-center h-full">
                             {renderWeatherIcon(weatherData.weathercode)}
                         </div>
                     </div>
@@ -217,7 +218,7 @@ const Weather: React.FC = () => {
                 </div>
             )}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div className="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-2xl">
                     <h2 className="text-3xl font-thin mb-4 text-gray-800 dark:text-gray-100">World Weather</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

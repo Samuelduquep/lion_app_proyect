@@ -5,6 +5,7 @@ import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautif
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import { Todo } from '../../global/types';
+import { useTheme } from '../../global/hooks/useTheme';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -85,20 +86,20 @@ const TodoList: React.FC = () => {
             {
                 label: 'Tasks',
                 data: [todoCount, doingCount, doneCount],
-                backgroundColor: ['rgba(54, 162, 235, 0.5)', 'rgba(255, 206, 86, 0.5)', 'rgba(75, 192, 192, 0.5)'],
-                borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)'],
-                borderWidth: 1,
+                backgroundColor: ['#Fef3c7', '#Dbeafe', '#D1FAE5'],
+                borderWidth: 0,
             },
         ],
     };
 
+    const { darkMode } = useTheme();
+
     return (
-        <div className="flex justify-between flex-col h-full p-3 bg-gradient-to-br from-blue-300 to-blue-500 dark:from-blue-700 dark:to-blue-900 rounded-md shadow-xl text-white dark:text-gray-200">
+        <div className="flex justify-between h-full item-center flex-col h-100 p-2 bg-gradient-to-br from-blue-300 to-blue-500 dark:from-blue-700 dark:to-blue-900 rounded-md shadow-xl text-white dark:text-gray-200">
             {/* Parte Superior */}
-            <div className="flex-1 flex flex-col lg:flex-row lg:space-x-3 h-1-2">
+            <div className="flex-1 flex flex-col lg:flex-row gap-2 h-1/2">
                 {/* Todo List */}
-                <div className="w-full h-auto lg:w-1/2 bg-white text-gray-900 p-3 rounded-lg shadow-md border border-gray-200 dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 lg:mb-0">
-                    <h1 className="text-3xl font-bold mb-3">Todo List</h1>
+                <div className="w-1/2 h-full lg:w-1/2 bg-white text-gray-900 p-3 rounded-lg shadow-md border border-gray-200 dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 lg:mb-0">
                     <div className="mb-4">
                         <Input
                             type="text"
@@ -120,7 +121,7 @@ const TodoList: React.FC = () => {
                     </div>
                     <List
                         bordered
-                        className='overflow-auto max-h-64 pb-20 dark:bg-gray-800 dark:border-gray-600'
+                        className='overflow-auto h-full max-h-72 pb-20 dark:bg-gray-800 dark:border-gray-600'
                         dataSource={getStatusList('todo')}
                         renderItem={todo => (
                             <List.Item
@@ -145,17 +146,29 @@ const TodoList: React.FC = () => {
                 </div>
 
                 {/* Chart */}
-                <div className="w-full h-full lg:w-2/3 bg-white p-6 rounded-lg shadow-md border border-gray-200 dark:bg-gray-800 dark:border-gray-600">
-                    <h2 className="text-2xl font-semibold mb-2">Task Statistics</h2>
+                <div className="flex w-full h-full lg:w-2/3 bg-white p-3 rounded-lg shadow-md border border-gray-200 dark:bg-gray-800 dark:border-gray-600">
                     <Bar
                         data={chartData}
                         options={{
                             responsive: true,
                             plugins: {
                                 legend: {
-                                    position: 'top' as const,
+                                    display: true,
+                                    position: 'top',
                                     labels: {
-                                        color: 'white', // Change legend text color in dark mode
+                                        generateLabels: (chart) => {
+                                            const original = ChartJS.defaults.plugins.legend.labels.generateLabels;
+                                            const labels = original.call(this, chart);
+                                            return labels;
+                                        },
+                                    },
+                                    title: {
+                                        display: true,
+                                        text: 'Task Statistics',
+                                        font: {
+                                            size: 16,
+                                        },
+                                        color: darkMode ? 'white' : 'black',
                                     },
                                 },
                                 tooltip: {
@@ -181,7 +194,7 @@ const TodoList: React.FC = () => {
             </div>
 
             {/* Parte Inferior: Kanban */}
-            <div className="flex-1 lg:mt-3 flex h-1/2 space-x-3">
+            <div className="flex-1 lg:mt-2 flex h-1/2 gap-2">
                 <DragDropContext onDragEnd={handleDragEnd}>
                     {['todo', 'doing', 'done'].map(status => (
                         <Droppable key={status} droppableId={status}>
@@ -189,7 +202,7 @@ const TodoList: React.FC = () => {
                                 <div
                                     ref={provided.innerRef}
                                     {...provided.droppableProps}
-                                    className="p-5 pb-10 w-1/3 h-1-4 bg-white rounded-lg shadow-md border border-gray-200 dark:bg-gray-800 dark:border-gray-600"
+                                    className="p-5 pb-10 w-1/3  bg-white rounded-lg shadow-md border border-gray-200 dark:bg-gray-800 dark:border-gray-600"
                                 >
                                     <div className="flex items-center justify-between">
                                         <h3 className="text-lg font-semibold capitalize text-gray-700 dark:text-gray-300">
@@ -209,7 +222,7 @@ const TodoList: React.FC = () => {
                                                         ref={provided.innerRef}
                                                         {...provided.draggableProps}
                                                         {...provided.dragHandleProps}
-                                                        className={`rounded-md mt-1 flex items-center justify-between border-b border-gray-200 hover:bg-gray-50 transition duration-200 ${todo.status === 'done' ? 'line-through bg-green-100 dark:bg-green-800' : todo.status === 'doing' ? 'bg-blue-100 dark:bg-blue-800' : 'bg-yellow-100 dark:bg-yellow-800'}`}
+                                                        className={`rounded-md mt-1 flex items-center justify-between border-b border-gray-200 hover:bg-gray-50 transition duration-200 ${todo.status === 'done' ? 'line-through bg-green-100' : todo.status === 'doing' ? 'bg-blue-100' : 'bg-yellow-100'}`}
                                                     >
                                                         <div
                                                             className="flex-1 cursor-pointer"

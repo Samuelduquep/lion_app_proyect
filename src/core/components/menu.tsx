@@ -1,16 +1,17 @@
 import { UnorderedListOutlined, AppstoreOutlined, DesktopOutlined, RocketOutlined, CameraFilled, StarFilled, ClockCircleOutlined } from '@ant-design/icons';
 import { Menu, MenuProps } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { useGenres } from '../../global/hooks/useGenre';
+import useGenreStore from '../../global/hooks/useGenre';
 import { useTheme } from '../../global/hooks/useTheme';
 import useGlobalStore from '../../global/hooks/useGlobal';
+useGenreStore
 
 
 type MenuItem = Required<MenuProps>['items'][number];
 
 
 const MainMenu: React.FC = () => {
-    const { genres, isLoading, error } = useGenres();
+    const { genres, isLoading, error } = useGenreStore();
     const navigate = useNavigate();
     const { setTitle } = useGlobalStore();
 

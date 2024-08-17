@@ -1,10 +1,10 @@
-import { useContext } from 'react';
-import { ThemeContext } from '../context/ThemeContext';
+import useThemeStore from './useThemeStore';
 
-export const useTheme = () => {
-    const context = useContext(ThemeContext);
-    if (!context) {
-        throw new Error('useTheme must be used within a ThemeProvider');
-    }
-    return context;
+const useTheme = () => {
+    return useThemeStore((state) => ({
+        darkMode: state.darkMode,
+        toggleTheme: state.toggleTheme,
+    }));
 };
+
+export { useTheme };

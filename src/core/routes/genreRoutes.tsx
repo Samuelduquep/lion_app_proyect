@@ -1,9 +1,9 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { useGenres } from '../../global/hooks/useGenre';
+import useGenreStore from '../../global/hooks/useGenre';
 import Movies from '../../app/Pages/Movies';
 const GenreRoutes: React.FC = () => {
-    const { genres } = useGenres();
+    const { genres } = useGenreStore();
 
     return (
         <Routes>
