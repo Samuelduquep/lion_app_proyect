@@ -41,7 +41,7 @@ const Users: React.FC = () => {
                     <span>Users</span>
                 </div>
             }
-            className='w-full h-full overflow-auto'
+            className='w-full h-100 lg:h-full'
         >
             <div className="w-full h-full rounded-md bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100">
                 {loading ? (
