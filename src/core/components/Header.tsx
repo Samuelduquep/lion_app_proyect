@@ -58,7 +58,6 @@ const Header = () => {
             {/* Drawer for Mobile Menu */}
             <Drawer
                 title="Menu"
-                size='350px'
                 placement="right"
                 onClose={onClose}
                 open={visible}
