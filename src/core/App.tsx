@@ -14,6 +14,7 @@ import Nasa from "../app/Pages/Nasa";
 import Movies from "../app/Pages/Movies";
 import GenreRoutes from "./routes/genreRoutes";
 import TodoList from "../app/Pages/TodoList";
+import Users from "../app/Pages/Users";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/home" element={<PrivateArea />}>
           <Route index element={<Dashboard />} />
           <Route path="Dashboard" element={<Dashboard />} />
+          <Route path="users" element={<Users />} />
           <Route path="weather" element={<Weather />} />
           <Route path="todoList" element={<TodoList />} />
           <Route path="nasa" element={<Nasa />} />

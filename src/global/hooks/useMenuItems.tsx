@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { UnorderedListOutlined, AppstoreOutlined, DesktopOutlined, RocketOutlined, CameraFilled, StarFilled, ClockCircleOutlined } from '@ant-design/icons';
+import { UnorderedListOutlined, AppstoreOutlined, UserOutlined, DesktopOutlined, RocketOutlined, CameraFilled, StarFilled, ClockCircleOutlined } from '@ant-design/icons';
 import { MenuProps } from 'antd';
 import useGenreStore from './useGenre';
 
@@ -12,6 +12,7 @@ const useMenuItems = (): MenuItem[] => {
     useEffect(() => {
         const items: MenuItem[] = [
             { key: 'Dashboard', icon: <AppstoreOutlined />, label: 'Dashboard' },
+            { key: 'users', icon: <UserOutlined />, label: 'Users' },
             { key: 'Weather', icon: <DesktopOutlined />, label: 'Weather' },
             { key: 'TodoList', icon: <UnorderedListOutlined />, label: 'Todo List' },
             { key: 'Nasa', icon: <RocketOutlined />, label: 'Nasa' },
