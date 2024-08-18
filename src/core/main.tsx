@@ -4,5 +4,5 @@ import './css/index.css'
 import 'antd/dist/reset.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <App />
+    <App />
 )
