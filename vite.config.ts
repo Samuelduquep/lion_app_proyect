@@ -19,12 +19,12 @@ export default defineConfig({
         icons: [
           {
             src: '/lion-icon.png',
-            sizes: '192x192',
+            sizes: '500x500',
             type: 'image/png',
           },
           {
             src: '/lion-icon.png',
-            sizes: '512x512',
+            sizes: '500x500',
             type: 'image/png',
           },
         ],
