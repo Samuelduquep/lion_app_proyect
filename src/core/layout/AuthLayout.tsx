@@ -3,25 +3,25 @@ import logo from '../assets/logo.png';
 
 const AuthLayout = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-r from-blue-50 to-blue-100">
-      <header className="bg-white p-4 shadow-md">
-        <div className="container mx-auto flex items-center justify-between">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-200 via-blue-200 to-purple-200">
+      <header className="bg-white shadow-md border-b border-gray-200">
+        <div className="container mx-auto flex items-center justify-between p-4">
           <Link to="/" className="flex items-center space-x-2">
-            <img src={logo} alt="Logo" className="h-8 md:h-10 w-auto" />
-            <div className="text-2xl md:text-4xl font-bold tracking-tight text-blue-600">
+            <img src={logo} alt="Logo" className="h-8 w-auto" />
+            <div className="text-2xl font-semibold text-gray-800">
               LION APP
             </div>
           </Link>
         </div>
       </header>
 
-      <main className="flex-1 flex items-center justify-center p-4 md:p-10">
-        <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md md:max-w-2xl">
+      <main className="flex-1 flex items-center justify-center p-4">
+        <div className="w-full md:max-w-md lg:max-w-lg p-8 bg-white rounded-lg shadow-lg border border-gray-300">
           <Outlet />
         </div>
       </main>
 
-      <footer className="bg-white p-4 text-center text-sm">
+      <footer className="bg-white border-t border-gray-200 p-4 text-center text-sm text-gray-600">
         <p>&copy; 2024 LION APP. All rights reserved.</p>
       </footer>
     </div>

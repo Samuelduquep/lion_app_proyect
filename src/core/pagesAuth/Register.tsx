@@ -26,7 +26,7 @@ export const Register: React.FC = () => {
 
   return (
     <div className="h-full w-full flex items-center justify-center">
-      <div className="bg-white rounded-lg shadow-lg p-8 w-full">
+      <div className="bg-white w-full">
         <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">Create an Account</h1>
         <Form
           name="basic"
