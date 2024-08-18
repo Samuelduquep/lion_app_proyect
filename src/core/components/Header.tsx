@@ -34,12 +34,6 @@ const Header = () => {
 
     return (
         <div className="flex items-center justify-between">
-            <Button
-                type="primary"
-                icon={<MenuOutlined />}
-                onClick={showDrawer}
-                className="md:hidden"
-            />
             <div className="text-xl font-semibold text-gray-900 dark:text-gray-200">
                 {title}
             </div>
@@ -51,12 +45,21 @@ const Header = () => {
                 >
                     <LogoutOutlined />
                 </Button>
+                <Button
+                    type='primary'
+                    className="md:hidden w-full text-white rounded-lg p-2 flex items-center justify-center hover:bg-red-600 dark:bg-blue-700 dark:hover:bg-red-600"
+                    onClick={showDrawer}
+                >
+                    <MenuOutlined />
+                </Button>
             </div>
+
 
             {/* Drawer for Mobile Menu */}
             <Drawer
                 title="Menu"
-                placement="left"
+                size='350px'
+                placement="right"
                 onClose={onClose}
                 open={visible}
             >
