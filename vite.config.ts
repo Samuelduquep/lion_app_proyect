@@ -9,21 +9,21 @@ export default defineConfig({
         enabled: true,
       },
       manifest: {
-        name: 'Mi Aplicación Web',
+        name: 'Lion App',
         short_name: 'App',
-        description: 'Una descripción de mi aplicación web',
+        description: 'Lion App',
         theme_color: '#ffffff',
         background_color: '#ffffff',
         start_url: '/',
         display: 'standalone',
         icons: [
           {
-            src: '/icon-192x192.png',
+            src: '/lion-icon.png',
             sizes: '192x192',
             type: 'image/png',
           },
           {
-            src: '/icon-512x512.png',
+            src: '/lion-icon.png',
             sizes: '512x512',
             type: 'image/png',
           },
